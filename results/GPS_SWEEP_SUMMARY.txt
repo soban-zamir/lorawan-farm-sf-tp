@@ -1,0 +1,19 @@
+============================ GPS-RULE MARGIN SWEEP ============================
+scenario=main_mix_200  farms=10 (evaluation seeds 1000-1009)
+Our method on the same farms: PDR   95.30 ±  0.21 %  |  E  112.95 ±  7.95 mJ per delivered
+
+margin |       PDR %       |   mJ per delivered  | sensors at target % |  replies/h  | blocked % | ours vs GPS rule: dPDR pp, dEnergy % (paired t-test)
+  4.0  |   87.03 ±  0.87 |   68.65 ±  2.05 |   28.55 ±  1.79 |    0.60 ±  0.00 |   1.66   | dPDR +8.27 (p=1.7e-09), dE  +64.5 % (p=5.7e-07)
+  6.0  |   92.25 ±  0.62 |  112.64 ±  3.08 |   55.45 ±  3.63 |    0.60 ±  0.00 |   2.75   | dPDR +3.04 (p=6.5e-07), dE   +0.3 % (p=9.4e-01)
+  8.0  |   94.12 ±  0.38 |  158.97 ±  3.76 |   64.95 ±  4.09 |    0.60 ±  0.00 |   3.81   | dPDR +1.18 (p=1.7e-05), dE  -28.9 % (p=1.0e-06)
+ 10.0  |   94.39 ±  0.26 |  193.26 ±  4.29 |   63.05 ±  3.70 |    0.60 ±  0.00 |   4.52   | dPDR +0.91 (p=2.3e-06), dE  -41.6 % (p=1.3e-08)
+ 11.0  |   94.28 ±  0.21 |  205.54 ±  4.04 |   60.15 ±  3.49 |    0.60 ±  0.00 |   4.77   | dPDR +1.01 (p=1.9e-06), dE  -45.0 % (p=3.4e-09)
+ 12.0  |   94.10 ±  0.26 |  216.17 ±  3.99 |   57.30 ±  4.39 |    0.60 ±  0.00 |   4.98   | dPDR +1.19 (p=1.0e-06), dE  -47.7 % (p=1.2e-09)
+ 13.0  |   94.02 ±  0.21 |  225.97 ±  4.12 |   54.15 ±  3.97 |    0.60 ±  0.00 |   5.17   | dPDR +1.27 (p=8.2e-08), dE  -50.0 % (p=5.3e-10)
+ 14.0  |   93.89 ±  0.22 |  234.03 ±  4.10 |   51.30 ±  4.75 |    0.60 ±  0.00 |   5.33   | dPDR +1.41 (p=9.1e-09), dE  -51.7 % (p=2.6e-10)
+ 16.0  |   93.65 ±  0.20 |  247.44 ±  3.60 |   45.15 ±  4.35 |    0.60 ±  0.00 |   5.59   | dPDR +1.64 (p=3.0e-09), dE  -54.4 % (p=9.3e-11)
+
+Check: 10 dB sweep run MATCHES the earlier GPS-rule run (193.26 vs 193.26 mJ)
+
+No margin up to 16 dB reaches 95 % delivery on average.
+Margins where the GPS rule uses less energy than our method: 4 dB (PDR 87.03 %), 6 dB (PDR 92.25 %)

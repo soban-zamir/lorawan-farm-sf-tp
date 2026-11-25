@@ -1,0 +1,216 @@
+============================== ADR VARIANTS AND STRESS TESTS ==============================
+mode=full  (earlier results used where a method was not re-run)
+
+### A. ADR variants from the literature vs standard ADR and our method
+
+## main_mix_200 (farms=10)
+Standard ADR               PDR   58.25 ±  0.42 | E   54.00 ±  3.97 | at target   33.30 ±  0.90 | replies/h    0.54 ±  0.01 | blocked    0.65 ±  0.04
+G-ADR                      PDR   71.48 ±  0.61 | E   91.36 ±  6.10 | at target   36.80 ±  1.22 | replies/h    0.52 ±  0.00 | blocked    1.34 ±  0.06
+EMA-ADR                    PDR   68.47 ±  0.52 | E   59.38 ±  3.92 | at target   28.85 ±  1.33 | replies/h    1.47 ±  0.08 | blocked    2.33 ±  0.14
+Our method                 PDR   95.30 ±  0.21 | E  112.95 ±  7.95 | at target   85.55 ±  2.93 | replies/h    0.60 ±  0.00 | blocked    2.84 ±  0.19
+  ours vs adr   : dPDR +37.04±0.34 pp (p=1.7e-18) | dEnergy  +58.95± 8.05 mJ (+109.2 %, p=4.8e-08)
+  ours vs gadr  : dPDR +23.82±0.54 pp (p=5.1e-15) | dEnergy  +21.59± 8.84 mJ ( +23.6 %, p=3.7e-04)
+  ours vs ema   : dPDR +26.82±0.45 pp (p=3.7e-16) | dEnergy  +53.57± 7.70 mJ ( +90.2 %, p=7.4e-08)
+
+## fixed_only (farms=10)
+Standard ADR               PDR   96.35 ±  0.39 | E   68.02 ±  3.25 | at target   82.10 ±  1.84 | replies/h    0.53 ±  0.01 | blocked    1.47 ±  0.05
+G-ADR                      PDR   96.87 ±  0.37 | E  136.69 ±  5.11 | at target   94.90 ±  1.52 | replies/h    0.48 ±  0.00 | blocked    2.40 ±  0.07
+EMA-ADR                    PDR   95.17 ±  0.53 | E   89.83 ±  3.98 | at target   75.80 ±  3.28 | replies/h    1.15 ±  0.12 | blocked    3.94 ±  0.37
+Our method                 PDR   95.40 ±  0.34 | E   60.25 ±  3.83 | at target   93.70 ±  1.56 | replies/h    0.28 ±  0.01 | blocked    0.82 ±  0.05
+  ours vs adr   : dPDR  -0.95±0.10 pp (p=3.8e-09) | dEnergy   -7.77± 2.41 mJ ( -11.4 %, p=4.6e-05)
+  ours vs gadr  : dPDR  -1.47±0.10 pp (p=7.5e-11) | dEnergy  -76.44± 4.15 mJ ( -55.9 %, p=1.3e-11)
+  ours vs ema   : dPDR  +0.23±0.40 pp (p=2.4e-01) | dEnergy  -29.58± 3.21 mJ ( -32.9 %, p=6.4e-09)
+
+## cows_only (farms=10)
+Standard ADR               PDR   33.77 ±  0.26 | E   35.69 ±  0.79 | at target    0.00 ±  0.00 | replies/h    0.56 ±  0.01 | blocked    0.16 ±  0.01
+G-ADR                      PDR   52.38 ±  0.61 | E   40.00 ±  1.50 | at target    0.00 ±  0.00 | replies/h    0.55 ±  0.00 | blocked    0.41 ±  0.01
+EMA-ADR                    PDR   49.98 ±  0.72 | E   26.06 ±  0.75 | at target    0.00 ±  0.00 | replies/h    1.57 ±  0.04 | blocked    0.73 ±  0.03
+Our method                 PDR   94.57 ±  0.12 | E  158.75 ±  4.89 | at target   73.10 ±  3.78 | replies/h    0.60 ±  0.00 | blocked    3.83 ±  0.12
+  ours vs adr   : dPDR +60.80±0.24 pp (p=7.9e-22) | dEnergy +123.06± 4.72 mJ (+344.8 %, p=5.8e-13)
+  ours vs gadr  : dPDR +42.19±0.60 pp (p=7.4e-17) | dEnergy +118.75± 4.93 mJ (+296.9 %, p=1.2e-12)
+  ours vs ema   : dPDR +44.59±0.68 pp (p=1.5e-16) | dEnergy +132.70± 4.71 mJ (+509.3 %, p=2.9e-13)
+
+## tractors_only (farms=10)
+Standard ADR               PDR   29.82 ±  0.65 | E   33.36 ±  0.69 | at target    0.00 ±  0.00 | replies/h    0.56 ±  0.01 | blocked    0.12 ±  0.01
+G-ADR                      PDR   57.10 ±  0.84 | E   32.26 ±  1.03 | at target    0.00 ±  0.00 | replies/h    0.57 ±  0.01 | blocked    0.39 ±  0.01
+EMA-ADR                    PDR   52.44 ±  0.96 | E   20.64 ±  0.37 | at target    0.00 ±  0.00 | replies/h    2.09 ±  0.08 | blocked    0.84 ±  0.03
+Our method                 PDR   95.31 ±  0.08 | E  120.79 ±  3.65 | at target   89.75 ±  2.31 | replies/h    0.60 ±  0.00 | blocked    3.01 ±  0.07
+  ours vs adr   : dPDR +65.49±0.62 pp (p=2.1e-18) | dEnergy  +87.43± 3.66 mJ (+262.1 %, p=1.3e-12)
+  ours vs gadr  : dPDR +38.21±0.80 pp (p=2.7e-15) | dEnergy  +88.53± 3.64 mJ (+274.4 %, p=1.1e-12)
+  ours vs ema   : dPDR +42.87±0.92 pp (p=3.1e-15) | dEnergy +100.15± 3.63 mJ (+485.3 %, p=3.5e-13)
+
+## mix_50 (farms=10)
+Standard ADR               PDR   58.32 ±  0.58 | E   57.59 ±  7.71 | at target   33.80 ±  2.82 | replies/h    0.54 ±  0.01 | blocked    0.18 ±  0.02
+G-ADR                      PDR   71.69 ±  0.93 | E   94.09 ±  9.12 | at target   38.80 ±  1.00 | replies/h    0.53 ±  0.01 | blocked    0.36 ±  0.03
+EMA-ADR                    PDR   69.87 ±  0.75 | E   61.54 ±  8.59 | at target   38.60 ±  0.97 | replies/h    1.51 ±  0.13 | blocked    0.65 ±  0.10
+Our method                 PDR   95.03 ±  0.35 | E   78.69 ±  7.19 | at target   86.00 ±  3.30 | replies/h    2.18 ±  0.05 | blocked    1.90 ±  0.14
+  ours vs adr   : dPDR +36.71±0.46 pp (p=2.4e-17) | dEnergy  +21.10± 3.86 mJ ( +36.6 %, p=5.9e-07)
+  ours vs gadr  : dPDR +23.34±0.75 pp (p=1.1e-13) | dEnergy  -15.40± 4.25 mJ ( -16.4 %, p=1.8e-05)
+  ours vs ema   : dPDR +25.16±0.59 pp (p=7.3e-15) | dEnergy  +17.15± 5.00 mJ ( +27.9 %, p=2.8e-05)
+
+## mix_1000 (farms=5)
+Standard ADR               PDR   56.03 ±  0.78 | E   61.48 ±  5.86 | at target   18.06 ±  2.37 | replies/h    0.55 ±  0.00 | blocked    3.27 ±  0.23
+G-ADR                      PDR   66.47 ±  1.17 | E  102.66 ±  8.43 | at target   13.80 ±  1.60 | replies/h    0.53 ±  0.00 | blocked    6.32 ±  0.36
+EMA-ADR                    PDR   60.18 ±  1.66 | E   73.92 ±  8.60 | at target    7.66 ±  1.63 | replies/h    1.49 ±  0.05 | blocked   10.89 ±  0.96
+Our method                 PDR   93.79 ±  0.35 | E  141.72 ±  9.13 | at target   50.10 ±  7.49 | replies/h    0.14 ±  0.00 | blocked    3.71 ±  0.21
+  ours vs adr   : dPDR +37.76±0.65 pp (p=8.7e-09) | dEnergy  +80.24± 6.07 mJ (+130.5 %, p=3.3e-06)
+  ours vs gadr  : dPDR +27.32±1.08 pp (p=2.5e-07) | dEnergy  +39.06± 6.06 mJ ( +38.1 %, p=5.7e-05)
+  ours vs ema   : dPDR +33.61±1.55 pp (p=4.6e-07) | dEnergy  +67.80± 6.28 mJ ( +91.7 %, p=7.4e-06)
+
+## gps_poor_25m (farms=10)
+Standard ADR               PDR   58.25 ±  0.42 | E   54.00 ±  3.97 | at target   33.30 ±  0.90 | replies/h    0.54 ±  0.01 | blocked    0.65 ±  0.04
+G-ADR                      PDR   71.48 ±  0.61 | E   91.36 ±  6.10 | at target   36.80 ±  1.22 | replies/h    0.52 ±  0.00 | blocked    1.34 ±  0.06
+EMA-ADR                    PDR   68.47 ±  0.52 | E   59.38 ±  3.92 | at target   28.85 ±  1.33 | replies/h    1.47 ±  0.08 | blocked    2.33 ±  0.14
+Our method                 PDR   95.32 ±  0.22 | E  116.11 ±  6.79 | at target   84.90 ±  3.40 | replies/h    0.60 ±  0.00 | blocked    2.91 ±  0.16
+  ours vs adr   : dPDR +37.06±0.35 pp (p=1.9e-18) | dEnergy  +62.11± 6.58 mJ (+115.0 %, p=5.1e-09)
+  ours vs gadr  : dPDR +23.84±0.54 pp (p=5.5e-15) | dEnergy  +24.75± 8.00 mJ ( +27.1 %, p=6.3e-05)
+  ours vs ema   : dPDR +26.85±0.48 pp (p=6.6e-16) | dEnergy  +56.73± 6.45 mJ ( +95.5 %, p=9.5e-09)
+
+## collisions_on (farms=10)
+Standard ADR               PDR   57.28 ±  0.39 | E   57.22 ±  3.89 | at target   30.45 ±  0.52 | replies/h    0.54 ±  0.01 | blocked    0.67 ±  0.04
+G-ADR                      PDR   69.22 ±  0.82 | E   95.65 ±  6.91 | at target   24.95 ±  1.84 | replies/h    0.52 ±  0.00 | blocked    1.29 ±  0.05
+EMA-ADR                    PDR   67.56 ±  0.57 | E   60.44 ±  4.00 | at target   27.50 ±  1.72 | replies/h    1.46 ±  0.08 | blocked    2.27 ±  0.14
+Our method                 PDR   91.63 ±  0.32 | E   92.69 ±  2.29 | at target   35.95 ±  3.75 | replies/h    0.60 ±  0.00 | blocked    2.21 ±  0.04
+  ours vs adr   : dPDR +34.35±0.37 pp (p=6.7e-18) | dEnergy  +35.47± 2.06 mJ ( +62.0 %, p=2.4e-11)
+  ours vs gadr  : dPDR +22.41±0.65 pp (p=4.7e-14) | dEnergy   -2.96± 5.31 mJ (  -3.1 %, p=2.4e-01)
+  ours vs ema   : dPDR +24.07±0.43 pp (p=6.6e-16) | dEnergy  +32.25± 2.12 mJ ( +53.4 %, p=7.4e-11)
+
+## robust_terrain6 (farms=10)
+Standard ADR               PDR   54.41 ±  0.40 | E   65.38 ±  4.94 | at target   31.70 ±  0.72 | replies/h    0.54 ±  0.01 | blocked    0.68 ±  0.03
+G-ADR                      PDR   69.24 ±  0.73 | E   90.78 ±  6.11 | at target   34.80 ±  1.22 | replies/h    0.54 ±  0.00 | blocked    1.27 ±  0.06
+EMA-ADR                    PDR   66.07 ±  0.61 | E   66.19 ±  5.18 | at target   26.75 ±  1.70 | replies/h    1.81 ±  0.08 | blocked    2.86 ±  0.12
+Our method                 PDR   92.70 ±  0.51 | E  149.76 ± 17.64 | at target   46.70 ±  3.54 | replies/h    0.60 ±  0.00 | blocked    3.45 ±  0.37
+  ours vs adr   : dPDR +38.30±0.29 pp (p=2.7e-19) | dEnergy  +84.38±14.63 mJ (+129.1 %, p=3.8e-07)
+  ours vs gadr  : dPDR +23.46±0.60 pp (p=1.6e-14) | dEnergy  +58.98±13.31 mJ ( +65.0 %, p=3.5e-06)
+  ours vs ema   : dPDR +26.63±0.49 pp (p=7.9e-16) | dEnergy  +83.57±14.45 mJ (+126.3 %, p=3.7e-07)
+
+## robust_pathloss3 (farms=10)
+Standard ADR               PDR   56.75 ±  0.47 | E   65.55 ±  4.58 | at target   32.55 ±  1.16 | replies/h    0.53 ±  0.01 | blocked    0.73 ±  0.04
+G-ADR                      PDR   69.00 ±  0.68 | E  103.61 ±  6.63 | at target   36.30 ±  0.90 | replies/h    0.52 ±  0.00 | blocked    1.42 ±  0.06
+EMA-ADR                    PDR   65.68 ±  0.60 | E   71.32 ±  5.85 | at target   26.95 ±  1.87 | replies/h    1.44 ±  0.07 | blocked    2.53 ±  0.17
+Our method                 PDR   94.50 ±  0.45 | E  129.78 ± 11.06 | at target   74.00 ±  4.21 | replies/h    0.60 ±  0.00 | blocked    3.17 ±  0.25
+  ours vs adr   : dPDR +37.75±0.35 pp (p=1.9e-18) | dEnergy  +64.23±11.62 mJ ( +98.0 %, p=5.4e-07)
+  ours vs gadr  : dPDR +25.50±0.57 pp (p=4.8e-15) | dEnergy  +26.18±13.45 mJ ( +25.3 %, p=1.7e-03)
+  ours vs ema   : dPDR +28.82±0.51 pp (p=6.0e-16) | dEnergy  +58.46±12.35 mJ ( +82.0 %, p=2.0e-06)
+
+## robust_fading4 (farms=10)
+Standard ADR               PDR   36.15 ±  0.64 | E   39.13 ±  2.75 | at target    0.95 ±  0.43 | replies/h    0.55 ±  0.01 | blocked    0.19 ±  0.01
+G-ADR                      PDR   69.72 ±  0.56 | E   79.94 ±  5.06 | at target   29.75 ±  1.38 | replies/h    0.55 ±  0.00 | blocked    1.17 ±  0.05
+EMA-ADR                    PDR   58.43 ±  0.83 | E   35.16 ±  3.11 | at target    5.65 ±  1.13 | replies/h    1.95 ±  0.10 | blocked    1.38 ±  0.10
+Our method                 PDR   93.33 ±  0.23 | E  134.34 ±  8.66 | at target   46.10 ±  3.31 | replies/h    0.60 ±  0.00 | blocked    3.16 ±  0.16
+  ours vs adr   : dPDR +57.18±0.50 pp (p=1.0e-18) | dEnergy  +95.21± 6.16 mJ (+243.3 %, p=6.4e-11)
+  ours vs gadr  : dPDR +23.61±0.45 pp (p=1.1e-15) | dEnergy  +54.39± 6.06 mJ ( +68.0 %, p=8.0e-09)
+  ours vs ema   : dPDR +34.91±0.70 pp (p=1.8e-15) | dEnergy  +99.17± 6.19 mJ (+282.0 %, p=4.6e-11)
+
+## more_replies_8 (farms=10)
+Standard ADR               PDR   58.25 ±  0.42 | E   54.00 ±  3.97 | at target   33.30 ±  0.90 | replies/h    0.54 ±  0.01 | blocked    0.65 ±  0.04
+G-ADR                      PDR   71.48 ±  0.61 | E   91.36 ±  6.10 | at target   36.80 ±  1.22 | replies/h    0.52 ±  0.00 | blocked    1.34 ±  0.06
+EMA-ADR                    PDR   68.47 ±  0.52 | E   59.38 ±  3.92 | at target   28.85 ±  1.33 | replies/h    1.47 ±  0.08 | blocked    2.33 ±  0.14
+Our method                 PDR   92.82 ±  0.28 | E   94.82 ±  7.33 | at target   50.35 ±  2.91 | replies/h    1.20 ±  0.00 | blocked    4.81 ±  0.31
+  ours vs adr   : dPDR +34.57±0.52 pp (p=1.3e-16) | dEnergy  +40.81± 5.45 mJ ( +75.6 %, p=3.9e-08)
+  ours vs gadr  : dPDR +21.35±0.68 pp (p=1.1e-13) | dEnergy   +3.46± 8.18 mJ (  +3.8 %, p=3.6e-01)
+  ours vs ema   : dPDR +24.35±0.59 pp (p=8.8e-15) | dEnergy  +35.44± 6.49 mJ ( +59.7 %, p=6.1e-07)
+
+## mismatch_two_slope (farms=10)
+Standard ADR               PDR   56.02 ±  0.54 | E   77.21 ±  5.83 | at target   31.50 ±  1.33 | replies/h    0.53 ±  0.01 | blocked    0.82 ±  0.05
+G-ADR                      PDR   68.43 ±  0.74 | E  113.81 ±  6.91 | at target   35.05 ±  1.22 | replies/h    0.51 ±  0.00 | blocked    1.49 ±  0.06
+EMA-ADR                    PDR   63.85 ±  0.67 | E   83.32 ±  6.70 | at target   24.75 ±  2.08 | replies/h    1.38 ±  0.07 | blocked    2.67 ±  0.20
+Our method                 PDR   93.44 ±  0.56 | E  139.97 ±  7.72 | at target   57.00 ±  3.59 | replies/h    0.60 ±  0.00 | blocked    3.27 ±  0.18
+  ours vs adr   : dPDR +37.43±0.27 pp (p=1.7e-19) | dEnergy  +62.76± 6.94 mJ ( +81.3 %, p=7.5e-09)
+  ours vs gadr  : dPDR +25.01±0.52 pp (p=2.3e-15) | dEnergy  +26.17± 5.96 mJ ( +23.0 %, p=3.8e-06)
+  ours vs ema   : dPDR +29.59±0.45 pp (p=1.3e-16) | dEnergy  +56.65± 6.74 mJ ( +68.0 %, p=1.4e-08)
+
+## mismatch_time_varying (farms=10)
+Standard ADR               PDR   55.77 ±  0.47 | E   64.56 ±  4.30 | at target   12.05 ±  1.76 | replies/h    0.54 ±  0.01 | blocked    0.70 ±  0.04
+G-ADR                      PDR   70.86 ±  0.61 | E  102.24 ±  6.05 | at target   34.20 ±  1.00 | replies/h    0.52 ±  0.00 | blocked    1.44 ±  0.06
+EMA-ADR                    PDR   65.97 ±  0.48 | E   69.35 ±  4.50 | at target   19.35 ±  1.82 | replies/h    1.34 ±  0.07 | blocked    2.28 ±  0.14
+Our method                 PDR   93.90 ±  0.32 | E  147.25 ± 15.84 | at target   61.00 ±  3.38 | replies/h    0.60 ±  0.00 | blocked    3.53 ±  0.38
+  ours vs adr   : dPDR +38.13±0.41 pp (p=5.7e-18) | dEnergy  +82.70±14.91 mJ (+128.1 %, p=5.3e-07)
+  ours vs gadr  : dPDR +23.04±0.53 pp (p=6.2e-15) | dEnergy  +45.01±14.90 mJ ( +44.0 %, p=7.6e-05)
+  ours vs ema   : dPDR +27.93±0.36 pp (p=3.2e-17) | dEnergy  +77.90±14.55 mJ (+112.3 %, p=7.1e-07)
+
+## main_mix_200 by sensor type (PDR % / mJ per delivered)
+Standard ADR               fixed:  96.53 /  63.95  cow:  34.02 /  35.06  tractor:  30.17 /  33.28
+G-ADR                      fixed:  96.70 / 137.21  cow:  53.15 /  39.90  tractor:  57.68 /  32.46
+EMA-ADR                    fixed:  94.47 /  88.31  cow:  50.20 /  25.46  tractor:  53.00 /  20.57
+Our method                 fixed:  95.60 /  75.33  cow:  95.00 / 141.60  tractor:  95.28 / 131.36
+  reproduction check Standard ADR        : new 58.25 % vs original 58.25 %
+  reproduction check Our method          : new 95.30 % vs original 95.30 %
+
+### B. Half-duplex loss scaled (true loss only; the server model is unchanged). Base = main scenario
+
+## half-duplex loss x1 (base) (farms=10)
+Standard ADR               PDR   58.25 ±  0.42 | E   54.00 ±  3.97 | at target   33.30 ±  0.90 | replies/h    0.54 ±  0.01 | blocked    0.65 ±  0.04
+GPS rule (no learning)     PDR   94.39 ±  0.26 | E  193.26 ±  4.29 | at target   63.05 ±  3.70 | replies/h    0.60 ±  0.00 | blocked    4.52 ±  0.07
+Prior only (no learning)   PDR   95.06 ±  0.21 | E  159.71 ±  3.89 | at target   78.95 ±  4.37 | replies/h    0.60 ±  0.00 | blocked    3.84 ±  0.07
+G-ADR                      PDR   71.48 ±  0.61 | E   91.36 ±  6.10 | at target   36.80 ±  1.22 | replies/h    0.52 ±  0.00 | blocked    1.34 ±  0.06
+EMA-ADR                    PDR   68.47 ±  0.52 | E   59.38 ±  3.92 | at target   28.85 ±  1.33 | replies/h    1.47 ±  0.08 | blocked    2.33 ±  0.14
+Our method                 PDR   95.30 ±  0.21 | E  112.95 ±  7.95 | at target   85.55 ±  2.93 | replies/h    0.60 ±  0.00 | blocked    2.84 ±  0.19
+  ours vs adr   : dPDR +37.04±0.34 pp (p=1.7e-18) | dEnergy  +58.95± 8.05 mJ (+109.2 %, p=4.8e-08)
+  ours vs gps   : dPDR  +0.91±0.20 pp (p=2.3e-06) | dEnergy  -80.30± 9.49 mJ ( -41.6 %, p=1.3e-08)
+  ours vs prior : dPDR  +0.24±0.17 pp (p=1.1e-02) | dEnergy  -46.76± 9.47 mJ ( -29.3 %, p=1.4e-06)
+  ours vs gadr  : dPDR +23.82±0.54 pp (p=5.1e-15) | dEnergy  +21.59± 8.84 mJ ( +23.6 %, p=3.7e-04)
+  ours vs ema   : dPDR +26.82±0.45 pp (p=3.7e-16) | dEnergy  +53.57± 7.70 mJ ( +90.2 %, p=7.4e-08)
+
+## half-duplex loss x0.5 (farms=10)
+Standard ADR               PDR   58.55 ±  0.42 | E   53.61 ±  3.93 | at target   34.50 ±  0.97 | replies/h    0.54 ±  0.01 | blocked    0.33 ±  0.02
+GPS rule (no learning)     PDR   96.58 ±  0.23 | E  188.94 ±  4.04 | at target   95.50 ±  1.50 | replies/h    0.60 ±  0.00 | blocked    2.29 ±  0.04
+Prior only (no learning)   PDR   96.95 ±  0.19 | E  156.70 ±  3.72 | at target   97.10 ±  0.86 | replies/h    0.60 ±  0.00 | blocked    1.95 ±  0.03
+G-ADR                      PDR   72.11 ±  0.59 | E   90.63 ±  6.00 | at target   39.00 ±  0.70 | replies/h    0.53 ±  0.00 | blocked    0.69 ±  0.03
+EMA-ADR                    PDR   69.59 ±  0.51 | E   58.12 ±  3.83 | at target   34.75 ±  0.59 | replies/h    1.47 ±  0.08 | blocked    1.19 ±  0.07
+Our method                 PDR   96.29 ±  0.18 | E   97.64 ±  2.95 | at target   92.05 ±  1.06 | replies/h    0.60 ±  0.00 | blocked    1.27 ±  0.03
+  ours vs adr   : dPDR +37.74±0.35 pp (p=1.5e-18) | dEnergy  +44.03± 3.20 mJ ( +82.1 %, p=1.8e-10)
+  ours vs gps   : dPDR  -0.29±0.12 pp (p=3.7e-04) | dEnergy  -91.30± 3.98 mJ ( -48.3 %, p=1.8e-12)
+  ours vs prior : dPDR  -0.66±0.10 pp (p=1.7e-07) | dEnergy  -59.05± 4.01 mJ ( -37.7 %, p=9.7e-11)
+  ours vs gadr  : dPDR +24.18±0.54 pp (p=4.7e-15) | dEnergy   +7.01± 5.65 mJ (  +7.7 %, p=2.0e-02)
+  ours vs ema   : dPDR +26.70±0.47 pp (p=5.2e-16) | dEnergy  +39.52± 3.15 mJ ( +68.0 %, p=4.1e-10)
+
+## half-duplex loss x2 (farms=10)
+Standard ADR               PDR   57.66 ±  0.41 | E   54.91 ±  4.06 | at target   28.65 ±  0.88 | replies/h    0.54 ±  0.01 | blocked    1.26 ±  0.08
+GPS rule (no learning)     PDR   90.11 ±  0.32 | E  202.53 ±  4.60 | at target   15.20 ±  1.78 | replies/h    0.60 ±  0.00 | blocked    8.79 ±  0.14
+Prior only (no learning)   PDR   91.39 ±  0.25 | E  165.98 ±  4.10 | at target   19.80 ±  2.26 | replies/h    0.60 ±  0.00 | blocked    7.50 ±  0.13
+G-ADR                      PDR   70.26 ±  0.64 | E   93.58 ±  6.41 | at target   24.35 ±  1.80 | replies/h    0.52 ±  0.00 | blocked    2.59 ±  0.13
+EMA-ADR                    PDR   66.42 ±  0.56 | E   61.61 ±  4.37 | at target   22.50 ±  1.49 | replies/h    1.46 ±  0.07 | blocked    4.42 ±  0.25
+Our method                 PDR   90.41 ±  1.42 | E  178.80 ± 38.94 | at target   24.25 ± 10.99 | replies/h    0.60 ±  0.01 | blocked    8.11 ±  1.58
+  ours vs adr   : dPDR +32.74±1.67 pp (p=7.4e-12) | dEnergy +123.90±36.90 mJ (+225.6 %, p=3.3e-05)
+  ours vs gps   : dPDR  +0.29±1.39 pp (p=6.4e-01) | dEnergy  -23.73±40.42 mJ ( -11.7 %, p=2.2e-01)
+  ours vs prior : dPDR  -0.98±1.41 pp (p=1.5e-01) | dEnergy  +12.83±40.26 mJ (  +7.7 %, p=4.9e-01)
+  ours vs gadr  : dPDR +20.14±1.84 pp (p=1.4e-09) | dEnergy  +85.22±38.95 mJ ( +91.1 %, p=7.9e-04)
+  ours vs ema   : dPDR +23.99±1.60 pp (p=8.1e-11) | dEnergy +117.19±37.42 mJ (+190.2 %, p=5.8e-05)
+  (Always-SF12 sends no replies, so it is unaffected: see the main scenario)
+
+### C. Collar body shadowing (cows: 0-20 dB extra loss depending on heading relative to the gateway)
+
+## body_shadow_cows (farms=10)
+Standard ADR               PDR   52.23 ±  0.31 | E   66.70 ±  4.59 | at target   33.30 ±  0.91 | replies/h    0.50 ±  0.01 | blocked    0.61 ±  0.04 | cows PDR  18.87
+Always SF12/14dBm          PDR   85.43 ±  0.33 | E  307.71 ±  1.19 | at target   59.10 ±  0.71 | replies/h    0.00 ±  0.00 | blocked    0.00 ±  0.00 | cows PDR  64.31
+GPS rule (no learning)     PDR   75.02 ±  0.32 | E  206.20 ±  6.08 | at target   40.20 ±  2.24 | replies/h    0.60 ±  0.00 | blocked    3.30 ±  0.08 | cows PDR  46.01
+Prior only (no learning)   PDR   75.30 ±  0.28 | E  178.72 ±  5.32 | at target   49.00 ±  1.99 | replies/h    0.60 ±  0.00 | blocked    2.93 ±  0.08 | cows PDR  45.43
+Ours, learns alone         PDR   81.08 ±  0.34 | E  186.89 ±  3.22 | at target   50.30 ±  1.87 | replies/h    0.57 ±  0.01 | blocked    2.80 ±  0.05 | cows PDR  59.95
+Ours, no look-ahead        PDR   79.94 ±  0.42 | E  233.97 ±  8.38 | at target   42.70 ±  1.35 | replies/h    0.60 ±  0.00 | blocked    3.75 ±  0.11 | cows PDR  57.82
+G-ADR                      PDR   64.01 ±  0.39 | E  123.55 ±  7.12 | at target   37.75 ±  0.74 | replies/h    0.48 ±  0.00 | blocked    1.34 ±  0.06 | cows PDR  34.35
+EMA-ADR                    PDR   58.34 ±  0.31 | E   78.04 ±  4.61 | at target   30.65 ±  1.25 | replies/h    1.19 ±  0.07 | blocked    1.92 ±  0.11 | cows PDR  24.02
+Our method                 PDR   80.44 ±  0.27 | E  226.30 ±  6.40 | at target   42.65 ±  1.49 | replies/h    0.59 ±  0.01 | blocked    3.60 ±  0.12 | cows PDR  58.87
+  ours vs adr   : dPDR +28.21±0.24 pp (p=7.7e-19) | dEnergy +159.61± 6.54 mJ (+239.3 %, p=1.1e-12)
+  ours vs sf12  : dPDR  -4.99±0.18 pp (p=3.0e-13) | dEnergy  -81.41± 6.86 mJ ( -26.5 %, p=6.7e-10)
+  ours vs gps   : dPDR  +5.42±0.22 pp (p=8.7e-13) | dEnergy  +20.11± 9.69 mJ (  +9.8 %, p=1.1e-03)
+  ours vs prior : dPDR  +5.14±0.23 pp (p=2.7e-12) | dEnergy  +47.59± 8.95 mJ ( +26.6 %, p=7.5e-07)
+  ours vs alone : dPDR  -0.65±0.15 pp (p=4.6e-06) | dEnergy  +39.42± 6.98 mJ ( +21.1 %, p=4.5e-07)
+  ours vs now   : dPDR  +0.50±0.28 pp (p=2.9e-03) | dEnergy   -7.66± 9.09 mJ (  -3.3 %, p=8.9e-02)
+  ours vs gadr  : dPDR +16.42±0.37 pp (p=5.2e-15) | dEnergy +102.76± 8.67 mJ ( +83.2 %, p=6.7e-10)
+  ours vs ema   : dPDR +22.10±0.28 pp (p=2.4e-17) | dEnergy +148.26± 7.56 mJ (+190.0 %, p=7.5e-12)
+
+### D. Per-sensor delivery percentiles per sensor type (main scenario, mean over farms)
+Standard ADR           fixed    all days p5/p10/p50 =  90.9/ 93.5/ 97.7 | last day p5/p10/p50 =  87.2/ 91.8/ 97.6
+Standard ADR           cow      all days p5/p10/p50 =  26.0/ 27.2/ 33.3 | last day p5/p10/p50 =  20.6/ 23.1/ 31.1
+Standard ADR           tractor  all days p5/p10/p50 =  23.2/ 24.7/ 30.2 | last day p5/p10/p50 =  17.9/ 19.9/ 28.3
+G-ADR                  fixed    all days p5/p10/p50 =  93.0/ 94.3/ 97.7 | last day p5/p10/p50 =  93.0/ 94.2/ 97.9
+G-ADR                  cow      all days p5/p10/p50 =  42.8/ 44.8/ 52.3 | last day p5/p10/p50 =  33.2/ 36.2/ 46.5
+G-ADR                  tractor  all days p5/p10/p50 =  47.6/ 49.7/ 57.7 | last day p5/p10/p50 =  38.7/ 41.9/ 52.4
+EMA-ADR                fixed    all days p5/p10/p50 =  84.4/ 86.7/ 96.9 | last day p5/p10/p50 =  84.6/ 87.4/ 97.1
+EMA-ADR                cow      all days p5/p10/p50 =  41.4/ 43.3/ 49.5 | last day p5/p10/p50 =  33.4/ 36.8/ 48.2
+EMA-ADR                tractor  all days p5/p10/p50 =  45.3/ 47.0/ 53.0 | last day p5/p10/p50 =  38.7/ 40.8/ 52.5
+Our method             fixed    all days p5/p10/p50 =  88.2/ 93.6/ 96.5 | last day p5/p10/p50 =  91.7/ 93.3/ 96.0
+Our method             cow      all days p5/p10/p50 =  94.0/ 94.2/ 95.1 | last day p5/p10/p50 =  93.1/ 93.7/ 95.2
+Our method             tractor  all days p5/p10/p50 =  94.4/ 94.7/ 95.4 | last day p5/p10/p50 =  93.4/ 93.9/ 95.6
+====================================================================================
